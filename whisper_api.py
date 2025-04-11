@@ -5,6 +5,10 @@ import tempfile
 app = FastAPI()
 model = whisper.load_model("tiny")
 
+@app.get("/")
+def root():
+    return {"message": "Whisper API is running."}
+
 @app.post("/transcribe/")
 async def transcribe(file: UploadFile = File(...)):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp:
