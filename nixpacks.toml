@@ -1,5 +1,5 @@
 [phases.setup]
-nixpkgs = ["ffmpeg"]
+packages = ["ffmpeg"]
 
 [start]
 cmd = "./start.sh"
