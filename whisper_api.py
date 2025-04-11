@@ -7,10 +7,10 @@ import subprocess
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-print("FFmpeg path11111:", subprocess.getoutput("which ffmpeg"))
-
 app = FastAPI()
 model = whisper.load_model("tiny")
+
+print("FFmpeg path:", subprocess.getoutput("which ffmpeg"))
 
 @app.get("/")
 def root():
