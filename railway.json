@@ -5,5 +5,12 @@
   },
   "start": {
     "cmd": "./start.sh"
+  },
+  "nixpacks": {
+    "phases": {
+      "setup": {
+        "packages": ["ffmpeg"]
+      }
+    }
   }
 }
