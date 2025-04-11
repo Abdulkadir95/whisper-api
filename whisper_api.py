@@ -1,6 +1,8 @@
 from fastapi import FastAPI, File, UploadFile
 import whisper
 import tempfile
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 app = FastAPI()
 model = whisper.load_model("tiny")
