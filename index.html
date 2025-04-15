@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wit.ai Audio to Text</title>
+</head>
+<body>
+<h2>🎤 إرسال ملف صوتي إلى Wit.ai (يدعم جميع الصيغ)</h2>
+
+<form id="uploadForm">
+    <input type="file" id="audioFile" accept="audio/*" required />
+    <br><br>
+    <button type="submit">إرسال إلى Wit.ai</button>
+</form>
+
+<h3>📝 النتيجة:</h3>
+<pre id="responseOutput"></pre>
+
+<script>
+    const form = document.getElementById("uploadForm");
+    const output = document.getElementById("responseOutput");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const fileInput = document.getElementById("audioFile");
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert("الرجاء اختيار ملف صوتي!");
+            return;
+        }
+
+        const response = await fetch("https://api.wit.ai/speech?v=20230224", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer C3SNRK3H24KOLKERSBU5WRGFDTQYPEDL",
+                "Content-Type": file.type // النوع التلقائي من الملف (audio/mp3, audio/webm...)
+            },
+            body: file
+        });
+
+        const result = await response.json();
+        output.textContent = JSON.stringify(result, null, 2);
+    });
+</script>
+</body>
+</html>
